@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.HuanTanSheng'
 
+apply from: '../scripts/publish-mavencentral.gradle'
+
 android {
     compileSdkVersion 31
 
@@ -12,11 +14,11 @@ android {
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
     }
-    libraryVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = "${variant.name}.aar"
-        }
-    }
+//    libraryVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "${variant.name}.aar"
+//        }
+//    }
 }
 
 dependencies {
