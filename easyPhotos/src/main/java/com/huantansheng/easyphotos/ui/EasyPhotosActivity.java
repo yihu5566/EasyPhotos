@@ -211,12 +211,17 @@ public class EasyPhotosActivity extends AppCompatActivity implements AlbumItemsA
     }
 
     protected String[] getNeedPermissions() {
-
+        // 暂时去掉音频相关  Manifest.permission.READ_MEDIA_AUDIO,
         if (Setting.isShowCamera) {
+            if (Setting.onlyStartCamera) {
+                return new String[]{Manifest.permission.CAMERA};
+            }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                return new String[]{Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_AUDIO,
+                return new String[]{Manifest.permission.READ_MEDIA_IMAGES,
                         Manifest.permission.READ_MEDIA_VIDEO, Manifest.permission.CAMERA};
             }
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 return new String[]{Manifest.permission.CAMERA,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -226,7 +231,7 @@ public class EasyPhotosActivity extends AppCompatActivity implements AlbumItemsA
                     Manifest.permission.WRITE_EXTERNAL_STORAGE};
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                return new String[]{Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_AUDIO, Manifest.permission.READ_MEDIA_VIDEO};
+                return new String[]{Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO};
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
