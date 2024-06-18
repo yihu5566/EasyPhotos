@@ -212,6 +212,9 @@ public class EasyPhotosActivity extends AppCompatActivity implements AlbumItemsA
 
     protected String[] getNeedPermissions() {
         if (Setting.isShowCamera) {
+            if (Setting.onlyStartCamera) {
+                return new String[]{Manifest.permission.CAMERA};
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 return new String[]{Manifest.permission.CAMERA,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
